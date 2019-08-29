@@ -1,0 +1,16 @@
+[{
+  "garden": "test_garden_01",
+  "sensor": "moisture_01",
+  "data": "1023"
+  },
+  {
+    "garden": "test_garden_01",
+    "sensor": "moisture_01",
+    "data": "500"
+  },
+  {
+    "garden": "test_garden_01",
+    "sensor": "moisture_01",
+    "data": "200"
+  }
+]

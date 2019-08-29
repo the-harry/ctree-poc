@@ -1,0 +1,31 @@
+{"fields": [
+    {
+
+        "name": "garden",
+
+        "type": "VARCHAR",
+
+        "length": 128
+
+    },
+
+    {
+
+        "name": "sensor",
+
+        "type": "VARCHAR",
+
+        "length": 128
+
+    },
+
+    {
+
+        "name": "data",
+
+        "type": "VARCHAR",
+
+        "length": 48
+
+    }
+]}
