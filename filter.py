@@ -13,7 +13,7 @@ class Filter:
         data = []
         for x in range(10):
             try:
-                res = requests.get(URI + (x + 1))
+                res = requests.get(URI + (x + 1), auth=('admin', 'ADMIN'))
                 data.append(res.text)
             except Exception as e:
                 break

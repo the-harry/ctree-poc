@@ -1,0 +1,8 @@
+{
+    "find": {
+        "sensor": {
+            "operator": "=",
+            "value": "moisture_01"
+        }
+    }
+}

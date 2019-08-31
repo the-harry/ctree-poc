@@ -1,9 +1,10 @@
+import json
+import requests
 import serial
 import time
-import requests
 from datetime import datetime
 
-HOST = 'http://localhost:8081'
+HOST = 'http://192.168.0.11:8081'
 ENDPOINT = '/ctree/api/v1/record/ctreeSQL/metrics'
 URI = HOST + ENDPOINT
 BAUD = 9600
@@ -38,15 +39,17 @@ class Moisture:
         global URI
         try:
             payload = self.buildPayload()
-            res = requests.post(url = URI, data = payload)
+            res = requests.post(url = URI, data = payload, auth=('admin', 'ADMIN'))
             print(res.text)
             print(self.data)
         except Exception as e:
             raise e
+            pass
 
     def buildPayload(self):
-        {
-            "garden": "test_garden_01",
-            "sensor": "moisture_01",
-            "data": self.data
-        }
+        payload = {}
+        payload['garden'] = 'test_garden_01'
+        payload['sensor'] = 'moisture_01'
+        payload['data'] = self.data
+        data = json.dumps(payload)
+        return data
