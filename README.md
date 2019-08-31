@@ -1,6 +1,7 @@
+### iniciar o servidor
 chmod +x ctreeEdge
-
 ./ctreeEdge
+
 
 curl -u admin:ADMIN http://192.168.43.161:8081/ctree/api/v1/table/ctreeSQL -v
 

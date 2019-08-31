@@ -1,16 +1,24 @@
 import serial
 import time
+import requests
+from datetime import datetime
+
+HOST = 'http://localhost:8081'
+ENDPOINT = '/ctree/api/v1/record/ctreeSQL/metrics'
+URI = HOST + ENDPOINT
+BAUD = 9600
 
 class Moisture:
-    def __init__(self, port='/dev/ttyACM1'):
+
+    def __init__(self, port='/dev/ttyACM0'):
         self.port = port
         self.data = ''
-        self.baud = 9600
         self.sensor = self.connect()
 
     def connect(self):
+        global BAUD
         try:
-            self.sensor = serial.Serial(self.port, self.baud)
+            self.sensor = serial.Serial(self.port, BAUD)
             print('Conectado com sucesso.\n')
             return self.sensor
         except:
@@ -27,12 +35,18 @@ class Moisture:
             self.getData()
 
     def saveData(self):
-        #TODO SAVE CTREE
-        print(self.data)
+        global URI
+        try:
+            payload = self.buildPayload()
+            res = requests.post(url = URI, data = payload)
+            print(res.text)
+            print(self.data)
+        except Exception as e:
+            raise e
 
-
-# payload = {
-#     jardim: 1,
-#     sensor: 1,
-#     metrica: data
-# }
+    def buildPayload(self):
+        {
+            "garden": "test_garden_01",
+            "sensor": "moisture_01",
+            "data": self.data
+        }
